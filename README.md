@@ -2,26 +2,17 @@
 | CS-622       | Advanced Programming Techniques |
 |--------------|---------------------------------|
 | Name         | Javier Esteban de Celis         |
-| Date         | 09/30/2025                      |
+| Date         | 10/22/2025                      |
 | Course       | Fall                            |
-| Homework #   | 3                               |
+| Homework #   | 4                               |
 
-# Homework Overview - TODO
+# Homework Overview
 
-
+A simple application which runs the FindDuplicates shell script.
 
 
 # GitHub Repository Link:
 https://github.com/JaviEst/cs-622-hw-4
-
-# Implementation Description - TODO
-
-
-
-
-## Runtime flow: - TODO
-
-
 
 
 # Run the Application
@@ -35,6 +26,7 @@ Once the above is successfully ran, you can run the program by running the follo
 ```bash
 java -cp target/classes Main
 ```
+
 
 # Maven Commands
 
@@ -56,7 +48,6 @@ Type on the command line:
 ```bash
 mvn clean compile
 ```
-
 
 
 ## JUnit Tests
