@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="hw4-duplicate-finder" default="jar" basedir=".">
+    
+    <!-- Project properties -->
+    <property name="project.name" value="hw4"/>
+    <property name="version" value="1.0-SNAPSHOT"/>
+    <property name="main.class" value="Main"/>
+    
+    <!-- Directory properties -->
+    <property name="src.dir" value="src/main/java"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="dist.dir" value="dist"/>
+    
+    <!-- JAR file name -->
+    <property name="jar.file" value="${dist.dir}/${project.name}-${version}.jar"/>
+    
+    <!-- Target: clean - Remove all build artifacts -->
+    <target name="clean" description="Remove all build artifacts">
+        <echo message="Cleaning build directories..."/>
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+        <delete>
+            <fileset dir="." includes="*.log" erroronmissingdir="false"/>
+            <fileset dir="." includes="duplicates_*.log" erroronmissingdir="false"/>
+        </delete>
+    </target>
+    
+    <!-- Target: init - Initialize build directories -->
+    <target name="init" description="Initialize build directories">
+        <echo message="Initializing build directories..."/>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+    
+    <!-- Target: compile - Compile the source code -->
+    <target name="compile" depends="init" description="Compile the source code">
+        <echo message="Compiling source code from ${src.dir}..."/>
+        <javac srcdir="${src.dir}" 
+               destdir="${classes.dir}"
+               includeantruntime="false"
+               source="1.8"
+               target="1.8"
+               encoding="UTF-8"
+               debug="true"
+               debuglevel="lines,vars,source">
+        </javac>
+        <echo message="Compilation complete!"/>
+    </target>
+    
+    <!-- Target: jar - Create executable JAR file -->
+    <target name="jar" depends="compile" description="Create executable JAR file">
+        <echo message="Creating executable JAR file..."/>
+        <jar destfile="${jar.file}" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+                <attribute name="Implementation-Title" value="${project.name}"/>
+                <attribute name="Implementation-Version" value="${version}"/>
+                <attribute name="Built-By" value="${user.name}"/>
+            </manifest>
+        </jar>
+        <echo message="JAR file created successfully: ${jar.file}"/>
+        <echo message=""/>
+        <echo message="To run: java -jar ${jar.file}"/>
+    </target>
+    
+    <!-- Target: build - Complete build (clean + compile + jar) -->
+    <target name="build" depends="clean,jar" description="Complete build process">
+        <echo message="Build complete!"/>
+    </target>
+    
+    <!-- Target: run - Build and run the application -->
+    <target name="run" depends="jar" description="Build and run the application">
+        <echo message="Running application..."/>
+        <echo message="==========================================="/>
+        <java jar="${jar.file}" fork="true" failonerror="true">
+            <arg value="./pics"/>
+        </java>
+    </target>
+    
+    <!-- Target: info - Display project information -->
+    <target name="info" description="Display project information">
+        <echo message="==========================================="/>
+        <echo message="Project Information:"/>
+        <echo message="  Name: ${project.name}"/>
+        <echo message="  Version: ${version}"/>
+        <echo message="  Main Class: ${main.class}"/>
+        <echo message=""/>
+        <echo message="Directory Structure:"/>
+        <echo message="  Source: ${src.dir}"/>
+        <echo message="  Build: ${build.dir}"/>
+        <echo message="  Classes: ${classes.dir}"/>
+        <echo message="  Distribution: ${dist.dir}"/>
+        <echo message=""/>
+        <echo message="Available Targets:"/>
+        <echo message="  ant clean           - Remove all build artifacts"/>
+        <echo message="  ant compile         - Compile source code"/>
+        <echo message="  ant jar             - Create executable JAR"/>
+        <echo message="  ant build           - Complete build (clean + jar)"/>
+        <echo message="  ant run             - Build and run the application"/>
+        <echo message="  ant deploy          - Alias for run"/>
+        <echo message="  ant info            - Display this information"/>
+        <echo message="==========================================="/>
+    </target>
+
+</project>
