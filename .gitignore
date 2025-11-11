@@ -1,4 +1,7 @@
-target
+target/
+build/
+dist/
+lib/
 .idea/
 JavaProjectTemplate.iml
 .DS_Store

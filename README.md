@@ -2,9 +2,9 @@
 | CS-622       | Advanced Programming Techniques |
 |--------------|---------------------------------|
 | Name         | Javier Esteban de Celis         |
-| Date         | 10/22/2025                      |
+| Date         | 11/10/2025                      |
 | Course       | Fall                            |
-| Homework #   | 4                               |
+| Homework #   | 4 and 6                         |
 
 # Homework Overview
 
@@ -15,20 +15,65 @@ A simple application which runs the FindDuplicates shell script.
 https://github.com/JaviEst/cs-622-hw-4
 
 
-# Run the Application
+# Compile, Build, and Run the Application with ANT and Maven - Homework 6  
 
-To run the program you will first need to compile the code by running the following command:
+## Method 1: Using Build Tools
+
+### ANT
 ```bash
-mvn clean compile
+ant run
 ```
 
-Once the above is successfully ran, you can run the program by running the following command:
+### Maven  
 ```bash
+mvn verify -Prun
+```
+
+## Method 2: From Compiled Classes
+
+```bash
+# Compile first
+mvn compile
+# or
+ant compile
+
+# Then run
 java -cp target/classes Main
+# or
+java -cp build/classes Main
 ```
 
+## Method 3: From JAR File
 
-# Maven Commands
+### ANT JAR
+```bash
+ant build
+java -jar dist/hw4-1.0-SNAPSHOT.jar
+```
+
+### Maven JAR
+```bash
+mvn clean package
+java -jar target/hw4-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
+---
+
+# Comparing Build Systems
+
+| Feature | ANT | Maven |
+|---------|-----|-------|
+| Build file | `build.xml` | `pom.xml` |
+| Output directory | `build/` and `dist/` | `target/` |
+| JAR location | `dist/hw4-1.0-SNAPSHOT.jar` | `target/hw4-1.0-SNAPSHOT-jar-with-dependencies.jar` |
+| Run main app | `ant run` | `mvn verify -Prun` |
+| Clean build | `ant clean build` | `mvn clean package` |
+
+Both build systems produce equivalent results and support the same functionality!
+
+---
+
+# Maven Additional Commands
 
 We'll use Apache Maven to compile and run this project. You'll need to install Apache Maven (https://maven.apache.org/) on your system. 
 
