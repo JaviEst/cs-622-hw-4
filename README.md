@@ -57,7 +57,6 @@ mvn clean package
 java -jar target/hw4-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
----
 
 # Comparing Build Systems
 
@@ -71,7 +70,6 @@ java -jar target/hw4-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 Both build systems produce equivalent results and support the same functionality!
 
----
 
 # Maven Additional Commands
 
